@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "extends": [
+    "airbnb-base",
+    "plugin:vue/recommended",
+    "plugin:jest/recommended"
+  ],
+  "plugins": [
+    "vue",
+    "jest"
+  ],
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module"
+  },
+  "rules": {
+    "func-names": "off",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-absolute-path": "off",
+    "import/extensions": [
+      "off",
+      "never"
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "state"
+        ]
+      }
+    ],
+    "max-len": "warn",
+    "vue/no-side-effects-in-computed-properties": "warn",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error"
+  }
+}
