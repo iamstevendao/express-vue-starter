@@ -1,0 +1,16 @@
+<template lang="pug">
+footer
+  .container.text-center
+    p.float-left © 2019 Company, Inc. All Rights Reserved
+    ul.float-right.list-inline
+      li.list-inline-item
+        a(href='https://github.com/sahat/hackathon-starter') GitHub Project
+      li.list-inline-item
+        a(href='https://github.com/sahat/hackathon-starter/issues') Issues
+</template>
+
+<script>
+export default {
+  name: 'Footer',
+};
+</script>
