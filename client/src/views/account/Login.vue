@@ -1,5 +1,5 @@
 <template lang="pug">
-block content
+div
   .pb-2.mt-2.mb-4.border-bottom
     h3 Sign in
   form(method='POST')

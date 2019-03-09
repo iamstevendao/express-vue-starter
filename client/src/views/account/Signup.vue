@@ -1,5 +1,5 @@
 <template lang="pug">
-block content
+div
   .pb-2.mt-2.mb-4.border-bottom
     h3 Sign up
   form(id='signup-form', method='POST')
@@ -19,5 +19,5 @@ block content
     .form-group.offset-sm-3.col-md-7.pl-2
       button.btn.btn-success(type='submit')
         i.fas.fa-user-plus.fa-sm
-        | Signup
+        | Sign up
 </template>

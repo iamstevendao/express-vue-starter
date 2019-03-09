@@ -23,5 +23,25 @@ export default new Router({
       name: 'contact',
       component: () => import('./views/Contact.vue'),
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/account/Login.vue'),
+    },
+    {
+      path: '/sign-up',
+      name: 'sign-up',
+      component: () => import('./views/account/SignUp.vue'),
+    },
+    {
+      path: '/forgot',
+      name: 'forgot',
+      component: () => import('./views/account/Forgot.vue'),
+    },
+    {
+      path: '/reset',
+      name: 'reset',
+      component: () => import('./views/account/Reset.vue'),
+    },
   ],
 });
