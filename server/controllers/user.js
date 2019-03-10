@@ -80,17 +80,16 @@ exports.getSignup = (req, res) => {
  * POST /signup
  * Create a new local account.
  */
-exports.postSignup = (req, res, next) => {
-  req.assert('email', 'Email is not valid').isEmail();
-  req.assert('password', 'Password must be at least 4 characters long').len(4);
-  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
-  req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
+exports.postSignup = (req, res) => {
+  // req.assert('email', 'Email is not valid').isEmail();
+  // req.assert('password', 'Password must be at least 4 characters long').len(4);
+  // req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  // req.sanitize('email').normalizeEmail({ gmail_remove_dots: false });
 
   const errors = req.validationErrors();
 
   if (errors) {
-    req.flash('errors', errors);
-    return res.redirect('/signup');
+    return res.status(500).send('There was a problem registering the user.');
   }
 
   const user = new User({
@@ -99,19 +98,17 @@ exports.postSignup = (req, res, next) => {
   });
 
   User.findOne({ email: req.body.email }, (err, existingUser) => {
-    if (err) { return next(err); }
+    if (err) {
+      return res.status(500).send('There was a problem registering the user.');
+    }
     if (existingUser) {
-      req.flash('errors', { msg: 'Account with that email address already exists.' });
-      return res.redirect('/signup');
+      return res.status(500).send('Account with that email address already exists.');
     }
     user.save((err) => {
-      if (err) { return next(err); }
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-        res.redirect('/');
-      });
+      if (err) {
+        return res.status(500).send('There was a problem saving the user.');
+      }
+      res.status(200).send({ user });
     });
   });
 };
