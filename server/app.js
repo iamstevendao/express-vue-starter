@@ -19,6 +19,7 @@ const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
+const cors = require('cors');
 
 const upload = multer({ dest: path.join(__dirname, 'uploads') });
 
@@ -44,6 +45,8 @@ const passportConfig = require('./config/passport');
  * Create Express server.
  */
 const app = express();
+
+app.use(cors());
 
 /**
  * Connect to MongoDB.
@@ -88,13 +91,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
-    next();
-  } else {
-    lusca.csrf()(req, res, next);
-  }
-});
+// app.use((req, res, next) => {
+//   if (/signup/.test(req.originalUrl)) {
+//     next();
+//   } else if (req.path === '/api/upload') {
+//     next();
+//   } else {
+//     lusca.csrf()(req, res, next);
+//   }
+// });
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.disable('x-powered-by');

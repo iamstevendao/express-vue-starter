@@ -1,40 +1,15 @@
-import {
-  ADD_MESSAGE, ADD_NOTIFICATION, SET_USER, SEARCH,
-} from './types';
+// Account module index
 
-import * as getters from './getters';
-import * as actions from './actions';
+import { actions, mutations } from './actions-mutations';
 
 const defaultState = {
+  token: null,
   user: null,
-  notifications: [
-    {
-      id: 1, text: 'Something happened!', time: 1, user: null,
-    },
-  ],
-  messages: [],
-  searchText: '',
 };
 
-const mutations = {
-  [ADD_MESSAGE](state, item) {
-    state.messages.splice(0);
-    state.messages.push(item);
-  },
-
-  [ADD_NOTIFICATION](state, item) {
-    state.notifications.splice(0);
-    state.notifications.push(item);
-  },
-
-  [SET_USER](state, user) {
-    state.user = user;
-  },
-
-  [SEARCH](state, text) {
-    state.searchText = text;
-  },
-
+const getters = {
+  token: state => state.token,
+  user: state => state.user,
 };
 
 export default {
